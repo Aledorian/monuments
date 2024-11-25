@@ -1,0 +1,333 @@
+:root {
+    --black: #1E1E1E;
+    --white: #FFFFFF;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+    overflow-x: hidden
+}
+
+body {
+    line-height: 1.5;
+    font-family: "Outfit", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+button {
+    background-color: unset;
+    border: unset;
+}
+
+a {
+    text-decoration: unset;
+    color: unset;
+}
+
+#root,
+#__next {
+    isolation: isolate;
+}
+
+/* Main title property */
+h1{
+    text-align: center;
+    margin-top: 50px;
+    font-size: 4rem;
+}
+
+/* Instruction property */
+header p{
+    text-decoration: underline;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 50px;
+}
+
+/* Select the first section on the html and split it to 5 even columns */
+main section:first-of-type{
+    columns: 5 auto;
+}
+
+/* Design for my button */
+main section:first-of-type div{
+    background-color: var(--black);
+    color: var(--white);
+    width: 80%;
+    margin: 0 auto 20px auto;
+    padding: 10px 10px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+/*
+    Select the second section on the html
+    Transition allow the next css trick
+    transform allow the depth effect
+*/
+section:nth-of-type(2){
+    columns: 5 auto;
+    column-gap: 0;
+    margin-bottom: 40px;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: 200ms ease 50ms;
+    z-index: -99;
+}
+
+
+
+/* Setup the size and add a border to the images contained into the second section */
+
+section:nth-of-type(2) div{
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 1px solid black;
+}
+
+section:nth-of-type(2) div:first-of-type{
+    background-image: url("images/tour_eiffel.webp");
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: 0;
+}
+
+section:nth-of-type(2) div:nth-of-type(2){
+    background-image: url("images/notre_dame.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0;
+}
+
+section:nth-of-type(2) div:nth-of-type(3){
+    background-image: url("images/arc_de_triomphe.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0;
+}
+
+section:nth-of-type(2) > div:nth-of-type(4){
+    background-image: url("images/mont_saint_michel.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0;
+}
+
+section:nth-of-type(2) > div:last-of-type{
+    background-image: url("images/versailles.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0;
+}
+
+
+/* Blur and greyscale every img except the one hoverd */
+section:nth-of-type(2):hover div:not(:hover){
+    filter: blur(3px) saturate(0);
+}
+
+/* Move the hover img forward */
+section:nth-of-type(2) div:hover{
+    transform: translateZ(50px);
+        /* change the filter when hover if the div get the grey class */
+        &.grey{
+            filter: saturate(1) blur(0); 
+        }
+}
+
+
+
+/* The selector "+ *" target any element directly after the previous target (section:nth-of-type(2) in this case) */
+section:nth-of-type(2) div:hover + *{
+    transform: rotateY(10deg);
+    transform: translateZ(-150px);
+    
+}
+
+section:nth-of-type(2) div:hover + * + *{
+    transform: rotateY(20deg);
+    transform: translateZ(-250px);
+    
+}
+
+section:nth-of-type(2) div:hover + * + * + *{
+    transform: rotateY(30deg);
+    transform: translateZ(-350px);
+    
+}
+
+section:nth-of-type(2) div:hover + * + * + * + *{
+    transform: rotateY(40deg);
+    transform: translateZ(-450px);
+    
+}
+
+/* The selector "+ *:hover" combine with :has target any element directly before element */
+
+section:nth-of-type(2) div:has(+ *:hover){
+    transform: rotateY(-10deg);
+    transform: translateZ(-150px);
+    
+}
+
+section:nth-of-type(2) div:has(+ * + *:hover){
+    transform: rotateY(-20deg);
+    transform: translateZ(-250px);
+    
+}
+
+section:nth-of-type(2) div:has(+ * + * + *:hover){
+    transform: rotateY(-30deg);
+    transform: translateZ(-350px);
+    
+}
+
+section:nth-of-type(2) div:has(+ * + * + * + *:hover){
+    transform: rotateY(-40deg);
+    transform: translateZ(-450px);
+}
+
+/* Firefox-specific styles */
+@supports (-moz-appearance: none) {
+    section:nth-of-type(2) {
+        transform-style: flat;
+        perspective: 0px;
+        transition: none;
+    }
+
+    section:nth-of-type(2) div:has(+ * + * + * + *:hover),
+    section:nth-of-type(2) div:has(+ * + * + *:hover),
+    section:nth-of-type(2) div:has(+ * + *:hover),
+    section:nth-of-type(2) div:has(+ *:hover),
+    section:nth-of-type(2) div:hover,   
+    section:nth-of-type(2) div:hover + *,
+    section:nth-of-type(2) div:hover + * + *,
+    section:nth-of-type(2) div:hover + * + * + *,
+    section:nth-of-type(2) div:hover + * + * + * + *
+    {
+        transform: rotateY(0deg);
+        transform: translateZ(0px);
+    }
+
+    section:nth-of-type(2):hover div:not(:hover){
+        filter: blur(3px) saturate(0);
+    }
+    
+}
+/* End of firefox specific style */
+
+/* Select the last section (the section which contain all the infos about the monument)*/
+main section:last-of-type{
+    background-color: var(--black);
+    color: var(--white);
+    padding: 75px;
+    height: fit-content;
+    transition: opacity 1s ease, display 2s ease allow-discrete;
+
+    &.animateData{
+        opacity: 0;
+    }
+}
+
+/* Allow the smooth transition with opacity in pair with transition: allow-discrete */
+@starting-style{
+    section.animateData{
+        opacity: 1
+    }
+}
+
+/* All the last section css property */
+main section:last-of-type h2{
+    font-size: 6rem;
+}
+
+main section:last-of-type h3{
+    font-size: 2rem;
+    font-weight: lighter;
+    display: inline;
+}
+
+main section:last-of-type strong{
+    font-size: 2rem;
+    font-weight: bolder;
+}
+
+main section:last-of-type p{
+    font-size: 1.5rem;
+    font-weight: lighter;
+}
+
+main section:last-of-type *{
+    width: 80%;
+}
+
+/* Property for the map container */
+#map{
+    width: 60%;
+    aspect-ratio: 1 / 1;
+    margin: 50px auto;
+}
+
+/* remove every border possible within "leaflet/open street map" map*/
+#map * {
+    border: none
+}
+
+
+/* Management of the map display (initially transparent with an overflow hidden to block scrolling) */
+main section:last-of-type > div:first-of-type{
+    height: 50px;
+    overflow: hidden;
+    opacity: 0;
+}
+
+/* When display opacity go up to 1*/
+main section:last-of-type > div:first-of-type.show{
+    height: fit-content;
+    opacity: 1;
+}
+
+/* The class used in javascript to greyscale and blur img not clicked*/
+.grey{
+    filter: blur(3px) saturate(0);
+}

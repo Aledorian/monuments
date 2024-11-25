@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les monuments</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+
+<body>
+    <header>
+        <h1>LES MONUMENTS</h1>
+        <p>Cliquez sur un monument ou sur un bouton pour obtenir une description</p>
+    </header>
+    <main>
+        <section>
+            <div onclick="showInfo('eiffelTower')" >Tour Eiffel</div>
+            <div onclick="showInfo('notreDame')">Notre-Dame</div>
+            <div onclick="showInfo('triumph')">Arc de triomphe</div>
+            <div onclick="showInfo('saintMichel')">Mont Saint-Michel</div>
+            <div onclick="showInfo('versailles')">Versailles</div>
+        </section>
+        <section>
+            <div onclick="showInfo('eiffelTower')"></div>
+            <div onclick="showInfo('notreDame')"></div>
+            <div onclick="showInfo('triumph')"></div>
+            <div onclick="showInfo('saintMichel')"></div>
+            <div onclick="showInfo('versailles')"></div>
+        </section>
+        <section>
+            <h2></h2>
+            <h3></h3><strong></strong>
+            <p></p>
+            <div>
+                <div id="map"></div>
+            </div>
+        </section>
+    </main>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
